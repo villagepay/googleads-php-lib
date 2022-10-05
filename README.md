@@ -3,16 +3,19 @@
 This project hosts the PHP client library for the various SOAP-based Ads APIs
 (AdWords and Ad Manager) at Google.
 
-> **The AdWords API will [sunset on April 27, 2022](https://ads-developers.googleblog.com/2021/04/upgrade-to-google-ads-api-from-adwords.html).  
-> [Upgrading guide](https://github.com/googleads/googleads-php-lib/blob/master/UPGRADING.md).**
+> **The AdWords API is [sunsetting](https://ads-developers.googleblog.com/2022/04/reminder-requests-to-adwords-api-will.html).  
+> You can use the new client library [google-ads-php](https://github.com/googleads/google-ads-php) to access the new [Google Ads API](https://developers.google.com/google-ads/api/docs/start) instead.**
 
-[![PHP version](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib.svg)](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib) [![Build Status](https://travis-ci.org/googleads/googleads-php-lib.svg?branch=master)](https://travis-ci.org/googleads/googleads-php-lib)
+[![PHP version](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib.svg)](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib) [![Build Status](https://travis-ci.org/googleads/googleads-php-lib.svg?branch=main)](https://travis-ci.org/googleads/googleads-php-lib)
 
 ### Requirements and Preparation
 
 *   System requirements and dependencies can be found in `composer.json` of this
     library. See [this page](https://getcomposer.org/doc/01-basic-usage.md) for
     more details.
+*   From version 52.0.0, this library requires the minimum PHP version to be
+    7.3. If you have an older version of PHP, `composer` command will
+    download an older version of the `googleads/googleads-php-lib` library.
 *   This library depends on [Composer](https://getcomposer.org/). If you don't
     have it installed on your computer yet, follow the
     [installation guide for Linux/Unix/OS X](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
@@ -31,12 +34,12 @@ Copy the sample `adsapi_php.ini` for your product to your
 [home directory](https://en.wikipedia.org/wiki/Home_directory#Default_home_directory_per_operating_system)
 and fill out the required properties before downloading the library.
 This library determines the home directory of your computer by using
-[`EnvironmentalVariables::getHome()`](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Common/Util/EnvironmentalVariables.php#L34).
+[`EnvironmentalVariables::getHome()`](https://github.com/googleads/googleads-php-lib/blob/HEAD/src/Google/AdsApi/Common/Util/EnvironmentalVariables.php#L34).
 
 *   [AdWords
-    adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/adsapi_php.ini)
+    adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/HEAD/examples/AdWords/adsapi_php.ini)
 *   [Ad Manager
-    adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdManager/adsapi_php.ini)
+    adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/HEAD/examples/AdManager/adsapi_php.ini)
 
 ### Downloading this library
 
@@ -52,7 +55,7 @@ There are three ways of downloading this library as described below.
 
 *   If you don't have OAuth2 credentials prior to using
     [installed application flow](https://github.com/googleads/googleads-php-lib/wiki/API-access-using-own-credentials-(installed-application-flow)),
-    you'll need [examples/Auth/GetRefreshToken.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/Auth/GetRefreshToken.php).
+    you'll need [examples/Auth/GetRefreshToken.php](https://github.com/googleads/googleads-php-lib/blob/HEAD/examples/Auth/GetRefreshToken.php).
     In this case, using `composer require` is not an option since there are no
     example files downloaded with the library.
 *   **Our examples are meant to be run from the command line and not as a
@@ -71,10 +74,10 @@ The library will be downloaded by Composer and stored under the `vendor/` direct
     $ composer require googleads/googleads-php-lib
     ```
 
-1.  Follow [Getting started](#getting-started) if you haven't done so.
-1.  Follow [Setting up your OAuth2 credentials](#setting-up-your-oauth2-credentials)
+2.  Follow [Getting started](#getting-started) if you haven't done so.
+3.  Follow [Setting up your OAuth2 credentials](#setting-up-your-oauth2-credentials)
     if you haven't set up the credentials yet.
-1.  You can now use the library.
+4.  You can now use the library.
 
 ### Using git clone
 
@@ -92,7 +95,7 @@ this library (e.g., submitting pull requests) or wish to try our examples.
 1.  Follow [Setting up your OAuth2 credentials](#setting-up-your-oauth2-credentials)
     if you haven't set up the credentials yet.
 1.  You can now use the library and run any examples you want. Try
-    [GetCampaigns.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/v201806/BasicOperations/GetCampaigns.php)
+    [GetCampaigns.php](https://github.com/googleads/googleads-php-lib/blob/HEAD/examples/AdWords/v201809/BasicOperations/GetCampaigns.php)
     by executing the following command:
 
     ```
@@ -117,7 +120,7 @@ client library. The extracted directory of the tarball will contain only the
 1.  Follow [Setting up your OAuth2 credentials](#setting-up-your-oauth2-credentials)
     if you haven't set up the credentials yet.
 1.  You can now run any examples you want. Try
-    [GetCampaigns.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/v201806/BasicOperations/GetCampaigns.php)
+    [GetCampaigns.php](https://github.com/googleads/googleads-php-lib/blob/HEAD/examples/AdWords/v201809/BasicOperations/GetCampaigns.php)
     by executing the following command:
 
     ```
@@ -148,9 +151,9 @@ The best way to learn how to use this library is to review the examples for your
 product.
 
 *   [AdWords
-    examples](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords)
+    examples](https://github.com/googleads/googleads-php-lib/blob/HEAD/examples/AdWords)
 *   [Ad Manager
-    examples](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdManager)
+    examples](https://github.com/googleads/googleads-php-lib/blob/HEAD/examples/AdManager)
 
 > All our examples are meant to be run via the command line and not through a
 > webpage.
@@ -213,9 +216,9 @@ It is highly recommended that you use an `adsapi_php.ini` file. However, if you
 don't want to or can't use one, you can use the OAuth2 token and ads session
 builders instead to set the same information. See the builders for details:
 
-*   [OAuth2TokenBuilder](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Common/OAuth2TokenBuilder.php)
-*   [AdWordsSessionBuilder](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/AdWords/AdWordsSessionBuilder.php)
-*   [AdManagerSessionBuilder](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/AdManager/AdManagerSessionBuilder.php)
+*   [OAuth2TokenBuilder](https://github.com/googleads/googleads-php-lib/blob/HEAD/src/Google/AdsApi/Common/OAuth2TokenBuilder.php)
+*   [AdWordsSessionBuilder](https://github.com/googleads/googleads-php-lib/blob/HEAD/src/Google/AdsApi/AdWords/AdWordsSessionBuilder.php)
+*   [AdManagerSessionBuilder](https://github.com/googleads/googleads-php-lib/blob/HEAD/src/Google/AdsApi/AdManager/AdManagerSessionBuilder.php)
 
 ### WSDL objects with names that are reserved PHP keywords
 
